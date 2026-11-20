@@ -36,11 +36,19 @@ html {
     background-color: var(--bg-main);
     color: var(--text-main);
     font-family: var(--font-body);
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 body {
+    max-width: 100vw;
     overflow-x: hidden;
     line-height: 1.6;
+}
+
+img, svg, video {
+    max-width: 100%;
+    height: auto;
 }
 
 a {
@@ -185,6 +193,12 @@ a {
     color: var(--secondary);
 }
 
+.nav-actions-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -198,6 +212,32 @@ a {
 
 .nav-links a:hover {
     color: var(--primary);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-btn:hover,
+.mobile-menu-btn:focus-visible {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-glow);
+}
+
+.mobile-only-item {
+    display: none;
 }
 
 /* Hero Section */
@@ -868,7 +908,21 @@ a {
 }
 
 /* Responsive Media Queries */
+@media(max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
 @media(max-width: 968px) {
+    .hero {
+        padding: 120px 0 60px 0;
+    }
+    
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -886,37 +940,381 @@ a {
     
     .metrics-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .features {
+        padding: 70px 0;
     }
     
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .demo-section {
+        padding: 70px 0;
+    }
+    
+    .installation {
+        padding: 70px 0;
     }
     
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 32px;
+    }
+}
+
+@media(max-width: 868px) {
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: rgba(10, 11, 16, 0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-active);
+        flex-direction: column;
+        gap: 8px;
+        padding: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-links.active {
+        max-height: 480px;
+        opacity: 1;
+        visibility: visible;
+        overflow-y: auto;
+    }
+    
+    .nav-links li {
+        width: 100%;
+    }
+    
+    .nav-links a {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-main);
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a:focus {
+        background: rgba(0, 255, 102, 0.08);
+        border-color: rgba(0, 255, 102, 0.25);
+        color: var(--primary);
+        padding-left: 20px;
+    }
+    
+    .mobile-only-item {
+        display: block;
+        margin-top: 8px;
+        border-top: 1px solid var(--border);
+        padding-top: 14px;
+    }
+    
+    .btn-mobile-gh {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+}
+
+@media(max-width: 768px) {
+    .report-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 }
 
 @media(max-width: 640px) {
-    .nav-links {
-        display: none; /* simple hidden navigation for mobile */
+    .container {
+        padding: 0 16px;
+    }
+    
+    .hero {
+        padding: 100px 0 50px 0;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 7.5vw, 2.5rem);
+        line-height: 1.2;
+        margin-bottom: 18px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 24px;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .cyber-shield {
+        width: 210px;
+        height: 210px;
+    }
+    
+    .hero-logo-img {
+        width: 110px;
+        height: 110px;
+        border-radius: 18px;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .metrics {
+        padding: 30px 0;
     }
     
     .metrics-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .metric-card {
+        padding: 16px 10px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+    }
+    
+    .metric-num {
+        font-size: 1.6rem;
+    }
+    
+    .metric-label {
+        font-size: 0.72rem;
+    }
+    
+    .features {
+        padding: 50px 0;
     }
     
     .features-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .feature-card {
+        padding: 22px 18px;
+    }
+    
+    .demo-section {
+        padding: 50px 0;
+    }
+    
+    .terminal-container {
+        border-radius: 10px;
     }
     
     .terminal-ascii {
-        font-size: 0.45rem;
+        font-size: clamp(0.24rem, 1.8vw, 0.45rem);
+        overflow-x: auto;
+        white-space: pre;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    
+    .terminal-header {
+        padding: 10px 14px;
+    }
+    
+    .terminal-title {
+        font-size: 0.75rem;
+        padding-right: 0;
+    }
+    
+    .terminal-body {
+        padding: 16px 12px;
+        min-height: 280px;
+        max-height: 380px;
+        font-size: 0.8rem;
+    }
+    
+    .terminal-input-line {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .terminal-prompt {
+        font-size: 0.78rem;
+        word-break: break-all;
+        white-space: normal;
+    }
+    
+    #target-input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-terminal-run {
+        width: 100%;
+        padding: 11px;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+    
+    .report-panel {
+        padding: 18px 14px;
+    }
+    
+    .installation {
+        padding: 50px 0;
+    }
+    
+    .installation-steps {
+        gap: 16px;
+    }
+    
+    .step-card {
+        padding: 18px 14px 18px 54px;
+        border-radius: 10px;
+    }
+    
+    .step-num {
+        left: 14px;
+        top: 18px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+    
+    .step-card h3 {
+        font-size: 1.05rem;
+    }
+    
+    .code-box {
+        padding: 10px 12px;
+        gap: 8px;
+        overflow: hidden;
+    }
+    
+    .code-text {
+        font-size: 0.75rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        flex: 1;
+    }
+    
+    .btn-copy {
+        padding: 4px;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+    }
+    
+    .donate-section {
+        padding: 40px 0;
+    }
+    
+    .donate-card {
+        padding: 36px 18px;
+        border-radius: 14px;
+    }
+    
+    .donate-card h2 {
+        font-size: 1.45rem;
+    }
+    
+    .donate-card p {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
+    
+    .donate-actions {
+        width: 100%;
+    }
+    
+    .donate-actions .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 13px;
+    }
+    
+    .footer {
+        padding: 40px 0 20px 0;
+    }
+    
+    .footer-brand p {
+        max-width: 100%;
+    }
+    
+    .footer-links-col p {
+        word-break: break-all;
+    }
+}
+
+@media(max-width: 380px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .report-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .report-stat-card {
+        padding: 8px 4px;
+    }
+    
+    .report-stat-card .count {
+        font-size: 1.15rem;
+    }
+    
+    .terminal-ascii {
+        font-size: 0.22rem;
+    }
+    
+    .logo span {
+        font-size: 1.15rem;
     }
 }

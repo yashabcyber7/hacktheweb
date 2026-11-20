@@ -4,6 +4,32 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile navigation toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const menuIcon = document.getElementById('menu-icon');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+            if (menuIcon) {
+                menuIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            }
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // Close mobile menu when a nav link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                if (menuIcon) {
+                    menuIcon.className = 'fa-solid fa-bars';
+                }
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
     const btnRunScan = document.getElementById('btn-run-scan');
     const targetInput = document.getElementById('target-input');
     const terminalOutput = document.getElementById('terminal-output');

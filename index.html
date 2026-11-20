@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="HackTheWeb - An AI-powered, production-ready web application security scanner and penetration testing framework.">
     <meta name="author" content="Yashab Alam (YashAB Cyber Security)">
     <title>HackTheWeb - AI-Powered Web Application Security Scanner</title>
@@ -27,16 +27,26 @@
                 <img src="logo.png" alt="HackTheWeb Logo" class="logo-img">
                 <span>HackThe<span class="highlight">Web</span></span>
             </a>
-            <ul class="nav-links">
-                <li><a href="#features" id="nav-link-features">Features</a></li>
-                <li><a href="#demo" id="nav-link-demo">Interactive Demo</a></li>
-                <li><a href="#installation" id="nav-link-installation">Installation</a></li>
-                <li><a href="#donate" id="nav-link-donate">Donate</a></li>
-                <li><a href="#contact" id="nav-link-contact">Contact</a></li>
-            </ul>
-            <a href="https://github.com/yashabcyber7/hacktheweb" class="btn btn-nav" id="btn-github-nav" target="_blank">
-                <i class="fa-brands fa-github"></i> GitHub
-            </a>
+            <div class="nav-actions-wrapper">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#features" id="nav-link-features">Features</a></li>
+                    <li><a href="#demo" id="nav-link-demo">Interactive Demo</a></li>
+                    <li><a href="#installation" id="nav-link-installation">Installation</a></li>
+                    <li><a href="#donate" id="nav-link-donate">Donate</a></li>
+                    <li><a href="#contact" id="nav-link-contact">Contact</a></li>
+                    <li class="mobile-only-item">
+                        <a href="https://github.com/yashabcyber7/hacktheweb" class="btn btn-primary btn-mobile-gh" target="_blank">
+                            <i class="fa-brands fa-github"></i> View on GitHub
+                        </a>
+                    </li>
+                </ul>
+                <a href="https://github.com/yashabcyber7/hacktheweb" class="btn btn-nav desktop-only" id="btn-github-nav" target="_blank">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fa-solid fa-bars" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
